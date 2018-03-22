@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="J3PM45DS95.com.fyserviciosdigitales.bestiario161" version="1.7.1" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+    <name>bestiario1.7</name>
+    <description>
+        bestiario
+    </description>
+    <author email="yezergm@gmail.com" href="http://www.fyserviciosdigitales.com">
+        fyserviciosdigitales
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+    <plugin name="cordova-plugin-whitelist" />
+    <allow-intent href="http://*/*" />
+    <plugin name="phonegap-plugin-local-notification" spec="~1.0.1" />
+    <plugin name="cordova-plugin-device" spec="~2.0.1" />
+    <platform name="android">
+        <icon density="ldpi" src="icons/android/36.png" />
+        <icon density="mdpi" src="icons/android/48.png" />
+        <icon density="hdpi" src="icons/android/72.png" />
+        <icon density="xhdpi" src="icons/android/96.png" />
+        <icon density="xxhdpi" src="icons/android/144.png" />
+        <icon density="xxxhdpi" src="icons/android/192.png" />
+        <preference name="android-minSdkVersion" value="16" />
+    </platform>
+    <platform name="ios">
+        <icon height="180" src="icons/ios/180.png" width="180" />
+        <icon height="60" src="icons/ios/60.png" width="60" />
+        <icon height="120" src="icons/ios/120.png" width="120" />
+        <icon height="76" src="icons/ios/76.png" width="76" />
+        <icon height="152" src="icons/ios/152.png" width="152" />
+        <icon height="167" src="icons/ios/167.png" width="167" />
+        <icon height="29" src="icons/ios/29.png" width="29" />
+        <icon height="58" src="icons/ios/58.png" width="58" />
+        <icon height="87" src="icons/ios/87.png" width="87" />
+        <icon height="40" src="icons/ios/40.png" width="40" />
+        <icon height="80" src="icons/ios/80.png" width="80" />
+        <icon height="120" src="icons/ios/120.png" width="120" />
+    </platform>
+</widget>

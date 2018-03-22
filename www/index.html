@@ -1,0 +1,486 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="refresh" content="60">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="css/style.css">
+   	    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+   	    <script type="text/javascript" src="cordova.js"></script>
+   	    <!--variables-->
+   	    <script>
+			$offlineTimeNotification = 1000; //1800; // (sec) 30 min
+		</script>
+		<script>
+			function startTime() {
+				$str1 = "-";
+				$str2 = "-";
+				var today = new Date();
+				var Y = today.getUTCFullYear();
+				var Mo = today.getUTCMonth(); //0-11//
+				Mo += 1;
+				if (Mo < 10) {Mo = "0" + Mo}
+				var D = today.getUTCDate();
+				if (D < 10) {D = "0" + D}
+				var h = today.getUTCHours();
+				if (h < 10) {h = "0" + h}
+				var m = today.getUTCMinutes();
+				if (m < 10) {m = "0" + m}
+				var s = today.getUTCSeconds();
+				if (s < 10) {s = "0" + s}
+				document.getElementById('clockYYMMDD').innerHTML = Y + "-" + Mo + "-" + D;
+				document.getElementById('clockHHMMSS').innerHTML = h + ":" + m + ":" + s;
+				var t = setTimeout(startTime, 500);
+			}
+		</script>
+		<script type="text/javascript">
+			$(document).ready(function refreshAPP() {
+				$.ajax({
+					type: "GET",
+					url: "http://www.fyserviciosdigitales.com/test/testPHP_jsender.php",
+					crossDomain: true,
+					cache: false,
+					timeout:3000,
+					success: function(result) {
+						 var result = $.parseJSON(result);
+						 $androidNotification = result["androidNotification"];
+						 $c1 = result["c1"];
+						 $c1L = result["c1L"];
+						 $c1V = result["c1V"];
+						 $c2 = result["c2"];
+						 $c2L = result["c2L"];
+						 $c2V = result["c2V"];
+						 $datetime = result["datetime"];
+						 $maxConn = result["maxConn"];
+						 $nowDatetime = result["nowDatetime"];
+						 $conectividadC1 = result["status"];
+						 $conectividadC2 = $conectividadC1;
+						 $keeperTimeUtc01 = (Date.parse($datetime)/1000);
+						 $dateNow = (Date.now()/1000);
+						 /*console.log($androidNotification);
+						 console.log(result);
+						 console.log($conectividadC2);*/
+						 //logica
+						 $c1_wtext = "";
+						 $c2_wtext = "";
+						 $c3_wtext = "";
+						
+						//conectividad
+						if ($conectividadC1 == 0) {
+							$conectividadC1_icon = '<span class="tab blink"><i class="material-icons" style="font-size:20px;color:darkred">warning</i></span>';
+							$c1_wtext = "Caeli no está enviando datos al servidor";	
+							$c2_wtext = "1. Comprobar conexión a internet";
+						    $c3_wtext = "2. Comprobar alimentación";
+							if ($keeperTimeUtc01 + $offlineTimeNotification <  $dateNow) {
+								document.addEventListener("deviceready", onDeviceReady, false);
+								function onDeviceReady() {
+									new Notification("Caeli offline", { tag: 'cOff', body: "Caeli no está enviando datos" });
+								}
+							}
+						}
+						else if ($conectividadC1 == 1) {
+							$conectividadC1_icon = '<i class="material-icons" style="font-size:20px;color:green">thumb_up</i>';
+						}
+						else {$conectividadC1_icon = "";}
+						document.getElementById('conectividadC1_icon').innerHTML = $conectividadC1_icon;
+						
+						if ($conectividadC2 == 0) {
+							$conectividadC2_icon = '<span class="tab blink"><i class="material-icons" style="font-size:20px;color:darkred">warning</i></span>';
+						}
+						else if ($conectividadC2 == 1) {
+							$conectividadC2_icon = '<i class="material-icons" style="font-size:20px;color:green">thumb_up</i>';
+						}
+						else {$conectividadC2_icon = "";}
+						document.getElementById('conectividadC2_icon').innerHTML = $conectividadC2_icon;
+						
+						
+						if ($conectividadC1 == 1) {
+							//status
+							if ($c1V >= $c1L) {
+								$status1_icon = '<span class="tab blink"><i class="material-icons" style="font-size:20px;color:darkred">warning</i></span>';
+								document.addEventListener("deviceready", onDeviceReady, false);
+								function onDeviceReady() {
+									new Notification("Aviso congelador 1", { tag: 'c1', body: "Congelador1 fuera de rango" });
+								}
+							}
+							else if ($c1V < $c1L) {
+								$status1_icon = '<i class="material-icons" style="font-size:20px;color:green">thumb_up</i>'; 
+							}
+							else {$status1_icon = "";}
+							//valores					
+							if ($c1V != -1) {document.getElementById('value1_icon').innerHTML = $c1V;}
+							else if ($c1V == -1) {document.getElementById('value1_icon').innerHTML = "";}
+							//limites
+							if ($c1L != -1) {document.getElementById('limit1_icon').innerHTML = "> " + $c1L; }
+							if ($c1L == -1) {document.getElementById('limit1_icon').innerHTML = ""; }
+						}
+						else {
+							$status1_icon = '?';
+							document.getElementById('value1_icon').innerHTML = '?';
+							document.getElementById('limit1_icon').innerHTML = ""
+						}
+						document.getElementById('status1_icon').innerHTML = $status1_icon;
+						
+						
+						if ($conectividadC2 == 1) {
+							//status
+							if ($c2V >= $c2L) {
+								$status2_icon = '<span class="tab blink"><i class="material-icons" style="font-size:20px;color:darkred">warning</i></span>';
+								document.addEventListener("deviceready", onDeviceReady, false);
+								function onDeviceReady() {
+									new Notification("Aviso congelador 2", { tag: 'c2', body: "Congelador2 fuera de rango" });
+								}
+							}
+							else if ($c2V < $c2L) {
+								$status2_icon = '<i class="material-icons" style="font-size:20px;color:green">thumb_up</i>';
+							}
+							else {$status2_icon = "";}
+							//valores
+						    if ($c2V != -1) {document.getElementById('value2_icon').innerHTML = $c2V;}
+						    else if ($c2V == -1) {document.getElementById('value2_icon').innerHTML = "";}
+							//limites
+						    if ($c2L != -1) {document.getElementById('limit2_icon').innerHTML = "> " + $c2L; }
+						    if ($c2L == -1) {document.getElementById('limit2_icon').innerHTML = ""; }							
+						}
+						else {
+							$status2_icon = '?';
+							document.getElementById('value2_icon').innerHTML = '?';
+							document.getElementById('limit2_icon').innerHTML = ""							
+						}
+						document.getElementById('status2_icon').innerHTML = $status2_icon;
+						
+						
+						//Ultima conexión UTC
+						document.getElementById('ultimaConn').innerHTML = $datetime;
+						
+						//warning text
+						document.getElementById('c1_wtext').innerHTML = $c1_wtext;
+						document.getElementById('c2_wtext').innerHTML = $c2_wtext;
+						document.getElementById('c3_wtext').innerHTML = $c3_wtext;
+						
+						//notificaciones
+						
+					},
+					error : function (xmlHttpRequest, textStatus, errorThrown) {
+						 $androidNotification = -2;
+						 $c1 = -2;
+						 $c1L = -2;
+						 $c1V = -2;
+						 $c2 = -2;
+						 $c2L = -2;
+						 $c2V = -2;
+						 $datetime = -2;
+						 $maxConn = -2;
+						 $nowDatetime = -2;
+						 $conectividadC1 = -2;
+						 $conectividadC2 = -2;
+						 $c1_wtext = "El móvil no tiene acceso a internet";
+						 $c2_wtext = "1. Comprueba tu conexión de datos";
+						 $c3_wtext = "2. Comprueba tu conexión Wifi";
+						 document.getElementById('c1_wtext').innerHTML = $c1_wtext;
+				  		 document.getElementById('c2_wtext').innerHTML = $c2_wtext;
+						 document.getElementById('c3_wtext').innerHTML = $c3_wtext;
+						 $conectividadC1_icon = '<span class="tab blink"><i class="material-icons" style="font-size:20px;color:darkred">warning</i></span>';
+					  	 document.getElementById('conectividadC1_icon').innerHTML = $conectividadC1_icon;
+						 $conectividadC2_icon = '<span class="tab blink"><i class="material-icons" style="font-size:20px;color:darkred">warning</i></span>';
+					  	 document.getElementById('conectividadC2_icon').innerHTML = $conectividadC2_icon;
+					     document.getElementById('value1_icon').innerHTML = '?';
+					     document.getElementById('limit1_icon').innerHTML = ""
+						 document.getElementById('status1_icon').innerHTML = '?';
+						 document.getElementById('value2_icon').innerHTML = '?';
+					     document.getElementById('limit2_icon').innerHTML = ""
+						 document.getElementById('status2_icon').innerHTML = '?';
+					}
+				});
+			});
+		</script>
+   	    <script>var __adobewebfontsappname__="dreamweaver"</script>
+        <script src="http://use.edgefonts.net/asap:n4,n7:default.js" type="text/javascript"></script> 
+    </head>
+    
+	<body onload="startTime()" style="background-color: #33b5e5; margin: 0px; height: 100%; width: 100%; font-family: asap; font-style: normal; font-weight: 400; font-size: 12px; padding-right: 0px;">
+		
+		<div 
+			style="font-style: normal; color: #FFFFFF; height: 50px; width: 100%; word-spacing: normal; background-color: #000000; text-shadow: 0px 0px 0px; font-size: 16px; font-family: asap; display: inline-block; margin-top: 0px; font-weight: 700;"
+			id="div001"><br>
+		&nbsp;&nbsp;&nbsp;fyserviciosdigitales bestiario1.7.1<br>
+		</div>
+
+		<div
+		 style="font-style: normal; color: #000000; height: 30px; width: 100%; word-spacing: normal; text-align: center; text-shadow: 0px 0px 0px; font-size: 16px; font-family: asap; display: inline-block; font-weight: 700; margin-top: 3%;">Control Bestiario<br>
+		</div>	
+		<!--table-->
+		<div id="main">
+	
+			<table width="90%" border="0" align="center" >
+				<tbody>
+					<tr>
+					  <th scope="row"><table width="100%" border="0">
+						<tbody>
+						  <tr>
+							<th scope="row">&nbsp;</th>
+						  </tr>
+						</tbody>
+					  </table></th>
+					  <td><table width="100%" border="0" style="background-color: black; color: rgba(255,255,255,1); font-size: 9px;">
+						<tbody>
+						  <tr>
+							<th scope="row">Conectividad</th>
+						  </tr>
+						</tbody>
+					  </table></td>
+					  <td><table width="100%" border="0" style="background-color: black; font-size: 9px; color: rgba(255,255,255,1);">
+						<tbody>
+						  <tr>
+							<th scope="row">Estado</th>
+						  </tr>
+						</tbody>
+					  </table></td>
+					  <td><table width="100%" border="0" style="background-color: black; color: rgba(255,255,255,1); font-size: 9px;">
+						<tbody>
+						  <tr>
+							<th scope="row">Valor sensor</th>
+						  </tr>
+						</tbody>
+					  </table></td>
+					  <td><table width="100%" border="0" style="background-color: black; font-style: normal; font-weight: 400; color: rgba(255,255,255,1); font-size: 9px;">
+						<tbody>
+						  <tr>
+							<th scope="row">Límites</th>
+						  </tr>
+						</tbody>
+					  </table></td>
+					</tr>
+					<tr style="outline: thin solid; font-size: 12px;" height="30px">
+					  <th scope="row"><table width="100%">
+						<tbody>
+						  <tr style="font-size: 9px;" height="30px">
+							<th scope="row">Congelador 13 (ºC)</th>
+						  </tr>
+						</tbody>
+					  </table></th>
+					  <td><table width="100%" border="0">
+						<tbody>
+						  <tr>
+							<th scope="row"><span id="conectividadC1_icon"></span></th>
+						  </tr>
+						</tbody>
+					  </table></td>
+					  <td><table width="100%" border="0">
+						<tbody>
+						  <tr>
+							<th scope="row"><span id="status1_icon"></span></th>
+						  </tr>
+						</tbody>
+					  </table></td>
+					  <td><table width="100%" border="0">
+						<tbody>
+						  <tr>
+							  <th scope="row"><span id="value1_icon"></span></th>
+						  </tr>
+						</tbody>
+					  </table></td>
+					  <td><table width="100%" border="0">
+						<tbody>
+						  <tr>
+							<th scope="row"><span id="limit1_icon"></span></th>
+						  </tr>
+						</tbody>
+					  </table></td>
+					</tr>
+					<tr style="outline: thin solid; font-size: 12px;" height="30px">
+					  <th scope="row"><table width="100%" border="0">
+						<tbody>
+						  <tr style="font-size: 9px;" height="30px">
+							<th scope="row">Congelador 15 (ºC)</th>
+						  </tr>
+						</tbody>
+					  </table></th>
+					  <td><table width="100%" border="0">
+						<tbody>
+						  <tr>
+							  <th scope="row"><span id="conectividadC2_icon"></span></th>
+						  </tr>
+						</tbody>
+					  </table></td>
+					  <td><table width="100%" border="0">
+						<tbody>
+						  <tr>
+							<th scope="row"><span id="status2_icon"></span></th>
+						  </tr>
+						</tbody>
+					  </table></td>
+					  <td><table width="100%" border="0">
+						<tbody>
+						  <tr>
+							<th scope="row"><span id="value2_icon"></span></th>
+						  </tr>
+						</tbody>
+					  </table></td>
+					  <td><table width="100%" border="0">
+						<tbody>
+						  <tr>
+							<th scope="row"><span id="limit2_icon"></span></th>
+						  </tr>
+						</tbody>
+					  </table></td>
+					</tr>
+					<tr height="30px">
+					  <th scope="row"><table width="100%" border="0">
+						<tbody>
+						  <tr height="30px">
+							<th scope="row">&nbsp;</th>
+						  </tr>
+						</tbody>
+					  </table></th>
+					  <td><table width="100%" border="0">
+						<tbody>
+						  <tr>
+							<th scope="row">&nbsp;</th>
+						  </tr>
+						</tbody>
+					  </table></td>
+					  <td><table width="100%" border="0">
+						<tbody>
+						  <tr>
+							<th scope="row">&nbsp;</th>
+						  </tr>
+						</tbody>
+					  </table></td>
+					  <td><table width="100%" border="0">
+						<tbody>
+						  <tr>
+							<th scope="row">&nbsp;</th>
+						  </tr>
+						</tbody>
+					  </table></td>
+					  <td><table width="100%" border="0">
+						<tbody>
+						  <tr>
+							<th scope="row">&nbsp;</th>
+						  </tr>
+						</tbody>
+					  </table></td>
+					</tr>
+					<tr height="30px">
+					  <th scope="row"><table width="100%" border="0">
+						<tbody>
+						  <tr height="30px">
+							<th scope="row">&nbsp;</th>
+						  </tr>
+						</tbody>
+					  </table></th>
+					  <td><table width="100%" border="0">
+						<tbody>
+						  <tr>
+							<th scope="row">&nbsp;</th>
+						  </tr>
+						</tbody>
+					  </table></td>
+					  <td><table width="100%" border="0">
+						<tbody>
+						  <tr>
+							<th scope="row">&nbsp;</th>
+						  </tr>
+						</tbody>
+					  </table></td>
+					  <td><table width="100%" border="0">
+						<tbody>
+						  <tr>
+							<th scope="row">&nbsp;</th>
+						  </tr>
+						</tbody>
+					  </table></td>
+					  <td><table width="100%" border="0">
+						<tbody>
+						  <tr>
+							<th scope="row">&nbsp;</th>
+						  </tr>
+						</tbody>
+					  </table></td>
+					</tr>
+					<tr height="30px">
+					  <th scope="row"><table width="100%" border="0">
+						<tbody>
+						  <tr height="30px">
+							<th scope="row">&nbsp;</th>
+						  </tr>
+						</tbody>
+					  </table></th>
+					  <td><table width="100%" border="0">
+						<tbody>
+						  <tr>
+							<th scope="row">&nbsp;</th>
+						  </tr>
+						</tbody>
+					  </table></td>
+					  <td><table width="100%" border="0">
+						<tbody>
+						  <tr>
+							<th scope="row">&nbsp;</th>
+						  </tr>
+						</tbody>
+					  </table></td>
+					  <td><table width="100%" border="0">
+						<tbody>
+						  <tr>
+							<th scope="row">&nbsp;</th>
+						  </tr>
+						</tbody>
+					  </table></td>
+					  <td><table width="100%" border="0">
+						<tbody>
+						  <tr>
+							<th scope="row">&nbsp;</th>
+						  </tr>
+						</tbody>
+					  </table></td>
+					</tr>
+			  </tbody>
+			</table>
+
+			<div style="font-style: normal; color: darkred; height:15px; width: 90%; word-spacing: normal; text-shadow: 0px 0px 0px; font-size: 12px; font-family: asap; margin-top: 0%; font-weight: 400; margin-left: 5%; margin-top: 20%;"><span id="c1_wtext"></span>
+			<span style="text-align: center"></span></div>
+			<div style="font-style: normal; color: darkred; height: 15px; width: 90%; word-spacing: normal; text-shadow: 0px 0px 0px; font-size: 12px; font-family: asap; margin-top: 0%; font-weight: 400; margin-left: 5%"><span id="c2_wtext"></span>
+			<span style="text-align: center"></span></div>
+			<div style="font-style: normal; color: darkred; height: 15px; width: 90%; word-spacing: normal; text-shadow: 0px 0px 0px; font-size: 12px; font-family: asap; margin-top: 0%; font-weight: 400; margin-left: 5%"><span id="c3_wtext"></span>
+			<span style="text-align: center"></span></div>
+
+
+			<div style="font-style: normal; color: #000000; height: 10px; width: 90%; word-spacing: normal; text-shadow: 0px 0px 0px; font-size: 10px; font-family: asap; display: inline-block; font-weight: 400;  margin-left: 5%;  font-weight: 400; margin-top: 4%;">Última transmisión (UTC): <span id="ultimaConn" style="color:blue;"></span>
+			</div>	
+			<div style="font-style: normal; color: #000000; height: 10px; width: 90%; word-spacing: normal; text-shadow: 0px 0px 0px; font-size: 10px; font-family: asap; display: inline-block; font-weight: 400;  margin-left: 5%;  font-weight: 400; margin-top: 0%;">Hora (UTC): <span id="clockYYMMDD" style="color:black;"></span>  <span id="clockHHMMSS" style="color:black;"></span>
+			</div>
+
+			<div style="font-style: normal; color: #000000; height: 9px; width: 90%; word-spacing: normal;  text-shadow: 0px 0px 0px; font-size: 10px; font-family: asap; display: inline-block; font-weight: 400; margin-left: 5%; font-weight: 400; margin-top: 5%;">Software: control de sistemas v. best1.5.2
+			</div>
+			<div style="font-style: normal; color: #000000; height: 9px; width: 90%; word-spacing: normal; text-shadow: 0px 0px 0px; font-size: 10px; font-family: asap; display: inline-block; font-weight: 400;  margin-left: 5%;  font-weight: 400; margin-top: 0%;">Id Sistema: 75439333235351E08121	 </div>
+
+			<div style="font-style: normal; color: #074B71; width: 90%; word-spacing: normal; text-shadow: 0px 0px 0px; font-size: 10px; font-family: asap; display: inline-block; text-align: right; font-weight: 400; margin-left: 5%; margin-top=5%; height: 9px; ">www.fyserviciosdigitales.com
+			</div>
+			<div style="font-style: normal; color: #074B71; width: 90%; word-spacing: normal; text-shadow: 0px 0px 0px; font-size: 10px; font-family: asap; display: inline-block; margin-left: 5%; font-weight: 400;  text-align: right; height: 9px;">Servicio Técnico
+			</div>
+			<div style="font-style: normal; color: #074B71; width: 90%; word-spacing: normal; text-align: left; text-shadow: 0px 0px 0px; font-size: 10px; font-family: asap; display: inline-block; margin-left: 5%; font-weight: 400;  text-align: right; height: 9px;">franciscomelian@gmail.com
+			</div>
+			<div style="font-style: normal; color: #074B71; width: 90%; word-spacing: normal; text-shadow: 0px 0px 0px; font-size: 10px; font-family: asap; display: inline-block; margin-left: 5%; font-weight: 400; margin-bottom: 0%; text-align: right; height: 9px;">yezergm@gmail.com
+			</div>
+		
+		</div>
+		
+		<script src="js/pulltorefresh.js"></script>
+	    <script>
+			PullToRefresh.init({
+				 mainElement: '#main',
+				 onRefresh: function refreshAPP(){ 
+					 //window.location.reload(true);
+					 window.location.href=window.location.href;
+				}
+			});
+		</script>
+
+	</body>
+		
+</html>
+

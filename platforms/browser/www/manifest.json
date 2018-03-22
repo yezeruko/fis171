@@ -1,0 +1,11 @@
+{
+  "background_color": "#FFF",
+  "display": "standalone",
+  "name": "bestiario1.7",
+  "short_name": "bestiario1.7",
+  "version": "J3PM45DS95.com.fyserviciosdigitales.bestiario161",
+  "description": "bestiario",
+  "author": "fyserviciosdigitales",
+  "icons": [],
+  "start_url": "index.html"
+}

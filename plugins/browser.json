@@ -1,0 +1,49 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "com.fyserviciosdigitales.bestiario152"
+    },
+    "cordova-plugin-dynamic-update": {
+      "PACKAGE_NAME": "com.fyserviciosdigitales.bestiario152"
+    },
+    "phonegap-plugin-local-notification": {
+      "PACKAGE_NAME": "com.fyserviciosdigitales.bestiario152"
+    },
+    "de.appplant.cordova.plugin.local-notification": {
+      "PACKAGE_NAME": "com.fyserviciosdigitales.bestiario152"
+    },
+    "cordova-plugin-local-notification": {
+      "PACKAGE_NAME": "com.fyserviciosdigitales.bestiario152"
+    },
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "com.fyserviciosdigitales.bestiario152"
+    },
+    "cordova-plugin-background-app": {
+      "PACKAGE_NAME": "com.fyserviciosdigitales.bestiario152"
+    },
+    "cordova-plugin-background-mode": {
+      "PACKAGE_NAME": "com.fyserviciosdigitales.bestiario152"
+    },
+    "cordova-plugin-autostart": {
+      "PACKAGE_NAME": "com.fyserviciosdigitales.bestiario152"
+    },
+    "cordova-plugin-boot-launcher": {
+      "PACKAGE_NAME": "com.fyserviciosdigitales.bestiario152"
+    }
+  },
+  "dependent_plugins": {
+    "cordova-plugin-app-event": {
+      "PACKAGE_NAME": "com.fyserviciosdigitales.bestiario152"
+    },
+    "cordova-plugin-badge": {
+      "PACKAGE_NAME": "com.fyserviciosdigitales.bestiario152"
+    }
+  }
+}
