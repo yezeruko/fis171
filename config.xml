@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="J3PM45DS95.com.fyserviciosdigitales.bestiario161" version="1.7.1" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
-    <name>bestiario1.7</name>
+<widget id="com.fyserviciosdigitales.bestiario171" version="1.7.1" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+    <name>bestiario17</name>
     <description>
         bestiario
     </description>
@@ -20,7 +20,6 @@
         <icon density="xhdpi" src="icons/android/96.png" />
         <icon density="xxhdpi" src="icons/android/144.png" />
         <icon density="xxxhdpi" src="icons/android/192.png" />
-        <preference name="android-minSdkVersion" value="16" />
     </platform>
     <platform name="ios">
         <icon height="180" src="icons/ios/180.png" width="180" />
