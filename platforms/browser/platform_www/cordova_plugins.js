@@ -143,6 +143,22 @@ module.exports = [
         "clobbers": [
             "window.BackgroundFetch"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-dialogs/www/notification.js",
+        "id": "cordova-plugin-dialogs.notification",
+        "pluginId": "cordova-plugin-dialogs",
+        "merges": [
+            "navigator.notification"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-dialogs/www/browser/notification.js",
+        "id": "cordova-plugin-dialogs.notification_browser",
+        "pluginId": "cordova-plugin-dialogs",
+        "merges": [
+            "navigator.notification"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -161,7 +177,8 @@ module.exports.metadata =
     "cordova-plugin-autostart": "2.3.0",
     "cordova-plugin-boot-launcher": "0.2.0",
     "cordova-plugin-background-fetch": "5.3.0",
-    "cordova-plugin-background-service": "1.3.5"
+    "cordova-plugin-background-service": "1.3.5",
+    "cordova-plugin-dialogs": "2.0.1"
 }
 // BOTTOM OF METADATA
 });

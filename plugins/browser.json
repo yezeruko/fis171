@@ -39,6 +39,9 @@
     },
     "cordova-plugin-background-service": {
       "PACKAGE_NAME": "com.fyserviciosdigitales.bestiario171"
+    },
+    "cordova-plugin-dialogs": {
+      "PACKAGE_NAME": "com.fyserviciosdigitales.bestiario171"
     }
   },
   "dependent_plugins": {

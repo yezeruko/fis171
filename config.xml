@@ -35,4 +35,5 @@
         <icon height="80" src="icons/ios/80.png" width="80" />
         <icon height="120" src="icons/ios/120.png" width="120" />
     </platform>
+    <plugin name="cordova-plugin-dialogs" spec="~2.0.1" />
 </widget>
