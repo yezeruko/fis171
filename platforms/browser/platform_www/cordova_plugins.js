@@ -135,6 +135,14 @@ module.exports = [
         "clobbers": [
             "cordova.plugins.autoStart"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-background-fetch/www/BackgroundFetch.js",
+        "id": "cordova-plugin-background-fetch.BackgroundFetch",
+        "pluginId": "cordova-plugin-background-fetch",
+        "clobbers": [
+            "window.BackgroundFetch"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -151,7 +159,9 @@ module.exports.metadata =
     "cordova-plugin-background-app": "2.0.2",
     "cordova-plugin-background-mode": "0.7.2",
     "cordova-plugin-autostart": "2.3.0",
-    "cordova-plugin-boot-launcher": "0.2.0"
+    "cordova-plugin-boot-launcher": "0.2.0",
+    "cordova-plugin-background-fetch": "5.3.0",
+    "cordova-plugin-background-service": "1.3.5"
 }
 // BOTTOM OF METADATA
 });

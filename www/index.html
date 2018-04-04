@@ -198,6 +198,12 @@
 		</script>
    	    <script>var __adobewebfontsappname__="dreamweaver"</script>
         <script src="http://use.edgefonts.net/asap:n4,n7:default.js" type="text/javascript"></script> 
+        <script>document.addEventListener('deviceready', function () {
+    		// cordova.plugins.backgroundMode is now available
+			cordova.plugins.backgroundMode.setEnabled(true);
+		}, false);
+		</script>
+        
     </head>
     
 	<body onload="startTime()" style="background-color: #33b5e5; margin: 0px; height: 100%; width: 100%; font-family: asap; font-style: normal; font-weight: 400; font-size: 12px; padding-right: 0px;">

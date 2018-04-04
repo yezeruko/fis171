@@ -36,6 +36,9 @@
     },
     "cordova-plugin-boot-launcher": {
       "PACKAGE_NAME": "com.fyserviciosdigitales.bestiario152"
+    },
+    "cordova-plugin-background-service": {
+      "PACKAGE_NAME": "com.fyserviciosdigitales.bestiario171"
     }
   },
   "dependent_plugins": {
@@ -44,6 +47,9 @@
     },
     "cordova-plugin-badge": {
       "PACKAGE_NAME": "com.fyserviciosdigitales.bestiario152"
+    },
+    "cordova-plugin-background-fetch": {
+      "PACKAGE_NAME": "com.fyserviciosdigitales.bestiario171"
     }
   }
 }
