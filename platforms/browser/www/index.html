@@ -69,6 +69,12 @@
 			}, false);
 		</script>-->	
 		<script>
+			function getDataToVerifyStatement() {
+				//logic for  check the days
+				return false;
+			}
+		</script>
+		<script>
 			document.addEventListener('deviceready', function () {
 		
 				var now = new Date().getTime();
@@ -80,13 +86,8 @@
 						firstAt: _10SecondsFromNow,
 					    title: "hola bestia",
 						every: "minute",//Using minute as a test, but it will be day
-						autoCancel: true,
-						checkStatement: false
+						checkStatement: getDataToVerifyStatement()
 				});											   
-			function getDataToVerifyStatement() {
-				   //logic for  check the days
-				   return false;
-			}
 		</script>
 		<script type="text/javascript">
 			$(document).ready(function refreshAPP() {
