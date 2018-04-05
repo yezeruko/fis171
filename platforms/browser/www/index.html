@@ -46,16 +46,15 @@
 			   }
 			}
         </script>-->
-        <script>
-			// keep startup url (in case your app is an SPA with html5 url routing)
+		<script>
 			var initialHref = window.location.href;
-			function restartApplication() {
-			  // Show splash screen (useful if your app takes time to load) 
-			  navigator.splashscreen.show();
-			  // Reload original app url (ie your index.html file)
-			  window.location = initialHref;
+			var reloadMe = function() {
+			console.log('reload');
+			window.location.reload();
+			window.location = 'index.html';
 			}
-		</script>
+		    window.setTimeout(reloadMe, 10000);
+	    </script>
 		<script type="text/javascript">
 			$(document).ready(function refreshAPP() {
 				$.ajax({
