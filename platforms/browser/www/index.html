@@ -74,7 +74,7 @@
 				var now = new Date().getTime();
 				var _10SecondsFromNow = new Date(now + 10 * 1000);
 				
-				cordova.plugins.notification.local.addNotification(
+				cordova.plugins.notification.local.schedule(
 				{
 						id: 1,
 						firstAt: _10SecondsFromNow,
