@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <meta http-equiv="refresh" content="60">
+        <meta http-equiv="refresh" content="120">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -111,15 +111,25 @@
 								document.addEventListener("deviceready", onDeviceReady, false);
 								function onDeviceReady() {
 									//new Notification("Caeli offline", { tag: 'cOff', body: "Caeli no está enviando datos" });
-									cordova.plugins.notification.local.schedule(
-										{
-										id: 111,
-										title: "Caeli Offline",
-										text: "Caeli no está enviando datos",
-										every: '0',
-										sound: null
-										}
-									);
+									if (device.platform === 'Android') {// Android only code
+										cordova.plugins.notification.local.schedule(
+											{
+												id: 111,
+												title: "Caeli Offline",
+												text: "Caeli no está enviando datos",
+												every: '0',
+												sound: null
+											}
+										);
+
+									}
+									if (device.platform === 'iOS') {// iOS only code
+									   var message = "Caeli no está enviando datos";
+									   var title = "Aviso Caeli";
+									   var buttonName = "alert";
+									   navigator.notification.alert(message, alertCallback, title, buttonName);
+									}
+
 								}
 							}
 						}
@@ -146,15 +156,23 @@
 								document.addEventListener("deviceready", onDeviceReady, false);
 								function onDeviceReady() {
 									//new Notification("Aviso congelador 1", { tag: 'c1', body: "Congelador1 fuera de rango" });
-									cordova.plugins.notification.local.schedule(
-										{
-										id: 112,
-										title: "Aviso congelador 1",
-										text: "Congelador1 fuera de rango",
-										every: '0',
-										sound: null
-										}
-									);
+									if (device.platform === 'Android') {// Android only code
+										cordova.plugins.notification.local.schedule(
+											{
+											id: 112,
+											title: "Aviso congelador 1",
+											text: "Congelador1 fuera de rango",
+											every: '0',
+											sound: null
+											}
+										);
+									}									
+									if (device.platform === 'iOS') {// iOS only code
+									   var message = "Congelador1 fuera de rango";
+									   var title = "Aviso Caeli";
+									   var buttonName = "alert";
+									   navigator.notification.alert(message, alertCallback, title, buttonName);
+									}
 								}
 							}
 							else if ($c1V < $c1L) {
@@ -183,15 +201,23 @@
 								document.addEventListener("deviceready", onDeviceReady, false);
 								function onDeviceReady() {
 									//new Notification("Aviso congelador 2", { tag: 'c2', body: "Congelador2 fuera de rango" });
-									cordova.plugins.notification.local.schedule(
-										{
-										id: 113,
-										title: "Aviso congelador 2",
-										text: "Congelador2 fuera de rango",
-										every: '0',
-										sound: null
-										}
-									);
+									if (device.platform === 'Android') {// Android only code
+										cordova.plugins.notification.local.schedule(
+											{
+											id: 113,
+											title: "Aviso congelador 2",
+											text: "Congelador2 fuera de rango",
+											every: '0',
+											sound: null
+											}
+										);
+									}
+									if (device.platform === 'iOS') {// iOS only code
+									   var message = "Congelador2 fuera de rango";
+									   var title = "Aviso Caeli";
+									   var buttonName = "alert";
+									   navigator.notification.alert(message, alertCallback, title, buttonName);
+									}
 								}
 							}
 							else if ($c2V < $c2L) {
