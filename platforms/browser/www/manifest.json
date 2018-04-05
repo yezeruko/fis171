@@ -1,11 +1,1 @@
-{
-  "background_color": "#FFF",
-  "display": "standalone",
-  "name": "bestiario1.7",
-  "short_name": "bestiario1.7",
-  "version": "com.fyserviciosdigitales.bestiario171",
-  "description": "bestiario",
-  "author": "fyserviciosdigitales",
-  "icons": [],
-  "start_url": "index.html"
-}
+{"background_color":"#FFF","display":"standalone","name":"bestiario1.7","short_name":"bestiario1.7","version":"com.fyserviciosdigitales.bestiario171","description":"bestiario","author":"fyserviciosdigitales","icons":[],"start_url":"index.html","gcm_sender_id":"996231231186"}

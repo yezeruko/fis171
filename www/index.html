@@ -13,7 +13,7 @@
    	    <script>
 			$offlineTimeNotification = 1000; //1800; // (sec) 30 min
 		</script>
-		<!--<script>
+		<script>
 			function startTime() {
 				$str1 = "-";
 				$str2 = "-";
@@ -35,7 +35,7 @@
 				var t = setTimeout(startTime, 500);
 			}
 		</script>
-		<script> Para activar dialogo emergente
+		<!--<script> Para activar dialogo emergente
 			function dialogAlert() {
 			   var message = "I am Alert Dialog!";
 			   var title = "ALERT";
@@ -110,7 +110,8 @@
 							if ($keeperTimeUtc01 + $offlineTimeNotification <  $dateNow) {
 								document.addEventListener("deviceready", onDeviceReady, false);
 								function onDeviceReady() {
-									//new Notification("Caeli offline", { tag: 'cOff', body: "Caeli no está enviando datos" });
+									new Notification("Caeli offline", { tag: 'cOff', body: "Caeli no está enviando datos", background: true,
+																	  priority:"10"});
 									/*if (device.platform === 'Android') {// Android only code
 										cordova.plugins.notification.local.schedule(
 											{
@@ -129,15 +130,6 @@
 									   var buttonName = "alert";
 									   navigator.notification.alert(message, alertCallback, title, buttonName);
 									}*/
-									cordova.plugins.notification.local.schedule(
-											{
-												id: 111,
-												title: "Caeli Offline",
-												text: "Caeli no está enviando datos",
-												every: '0',
-												sound: null
-											}
-										);
 
 								}
 							}
