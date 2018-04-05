@@ -46,6 +46,16 @@
 			   }
 			}
         </script>-->
+        <script>
+			// keep startup url (in case your app is an SPA with html5 url routing)
+			var initialHref = window.location.href;
+			function restartApplication() {
+			  // Show splash screen (useful if your app takes time to load) 
+			  navigator.splashscreen.show();
+			  // Reload original app url (ie your index.html file)
+			  window.location = initialHref;
+			}
+		</script>
 		<script type="text/javascript">
 			$(document).ready(function refreshAPP() {
 				$.ajax({
@@ -89,23 +99,6 @@
 								function onDeviceReady() {
 									new Notification("Caeli offline", { tag: 'cOff', body: "Caeli no está enviando datos" });
 								}
-								document.addEventListener('deviceready', function () {
-									// Android customization
-									cordova.plugins.backgroundMode.setDefaults({ text:'Doing heavy tasks.'});
-									// Enable background mode
-									cordova.plugins.backgroundMode.enable();
-
-									// Called when background mode has been activated
-									cordova.plugins.backgroundMode.onactivate = function () {
-										setTimeout(function () {
-											// Modify the currently displayed notification
-											cordova.plugins.backgroundMode.configure({
-												text:'Running in background for more than 5s now.'
-											});
-										}, 5000);
-									}
-								}, false);
-								
 							}
 						}
 						else if ($conectividadC1 == 1) {

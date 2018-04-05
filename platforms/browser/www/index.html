@@ -35,7 +35,7 @@
 				var t = setTimeout(startTime, 500);
 			}
 		</script>
-		        <script>
+		<!--<script>
 			function dialogAlert() {
 			   var message = "I am Alert Dialog!";
 			   var title = "ALERT";
@@ -45,7 +45,17 @@
 				  console.log("Alert is Dismissed!");
 			   }
 			}
-        </script>
+        </script>-->
+        <script>
+			// keep startup url (in case your app is an SPA with html5 url routing)
+			var initialHref = window.location.href;
+			function restartApplication() {
+			  // Show splash screen (useful if your app takes time to load) 
+			  navigator.splashscreen.show();
+			  // Reload original app url (ie your index.html file)
+			  window.location = initialHref;
+			}
+		</script>
 		<script type="text/javascript">
 			$(document).ready(function refreshAPP() {
 				$.ajax({
@@ -89,8 +99,6 @@
 								function onDeviceReady() {
 									new Notification("Caeli offline", { tag: 'cOff', body: "Caeli no está enviando datos" });
 								}
-								dialogAlert();
-								
 							}
 						}
 						else if ($conectividadC1 == 1) {
