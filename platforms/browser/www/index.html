@@ -80,22 +80,8 @@
 						firstAt: _10SecondsFromNow,
 					    title: "hola bestia",
 						every: "minute",//Using minute as a test, but it will be day
-						checkStatement: getDataToVerifyStatement()
+						checkStatement: false
 				});											   
-				if (getDataToVerifyStatement.checkStatement === true) {
-					var realNotification = {
-						id: 2,
-						title: "Prima notifica",
-						message: 'hello world',//your function date function here
-						date: _10SecondsFromNow,
-						autoCancel: true,
-						data: "{test"}
-				}
-			    //not sure, but you might want to put: $cordova.plugins.notification.local.add(realNotification);
-				cordova.plugins.notification.local.add(realNotification);				
-				}, false);
-			
-			
 			function getDataToVerifyStatement() {
 				   //logic for  check the days
 				   return false;
