@@ -35,7 +35,7 @@
 				var t = setTimeout(startTime, 500);
 			}
 		</script>
-		<!--<script> Para activar dialogo emergente
+		<script> Para activar dialogo emergente
 			function dialogAlert() {
 			   var message = "I am Alert Dialog!";
 			   var title = "ALERT";
@@ -111,7 +111,7 @@
 								document.addEventListener("deviceready", onDeviceReady, false);
 								function onDeviceReady() {
 									//new Notification("Caeli offline", { tag: 'cOff', body: "Caeli no está enviando datos" });
-									if (device.platform === 'Android') {// Android only code
+									/*if (device.platform === 'Android') {// Android only code
 										cordova.plugins.notification.local.schedule(
 											{
 												id: 111,
@@ -128,7 +128,16 @@
 									   var title = "Aviso Caeli";
 									   var buttonName = "alert";
 									   navigator.notification.alert(message, alertCallback, title, buttonName);
-									}
+									}*/
+									cordova.plugins.notification.local.schedule(
+											{
+												id: 111,
+												title: "Caeli Offline",
+												text: "Caeli no está enviando datos",
+												every: '0',
+												sound: null
+											}
+										);
 
 								}
 							}
@@ -156,7 +165,7 @@
 								document.addEventListener("deviceready", onDeviceReady, false);
 								function onDeviceReady() {
 									//new Notification("Aviso congelador 1", { tag: 'c1', body: "Congelador1 fuera de rango" });
-									if (device.platform === 'Android') {// Android only code
+									/*if (device.platform === 'Android') {// Android only code
 										cordova.plugins.notification.local.schedule(
 											{
 											id: 112,
@@ -172,7 +181,16 @@
 									   var title = "Aviso Caeli";
 									   var buttonName = "alert";
 									   navigator.notification.alert(message, alertCallback, title, buttonName);
-									}
+									}*/
+									cordova.plugins.notification.local.schedule(
+										{
+										id: 112,
+										title: "Aviso congelador 1",
+										text: "Congelador1 fuera de rango",
+										every: '0',
+										sound: null
+										}
+									);
 								}
 							}
 							else if ($c1V < $c1L) {
@@ -201,7 +219,7 @@
 								document.addEventListener("deviceready", onDeviceReady, false);
 								function onDeviceReady() {
 									//new Notification("Aviso congelador 2", { tag: 'c2', body: "Congelador2 fuera de rango" });
-									if (device.platform === 'Android') {// Android only code
+									/*if (device.platform === 'Android') {// Android only code
 										cordova.plugins.notification.local.schedule(
 											{
 											id: 113,
@@ -217,7 +235,16 @@
 									   var title = "Aviso Caeli";
 									   var buttonName = "alert";
 									   navigator.notification.alert(message, alertCallback, title, buttonName);
-									}
+									}*/
+									cordova.plugins.notification.local.schedule(
+										{
+										id: 113,
+										title: "Aviso congelador 2",
+										text: "Congelador2 fuera de rango",
+										every: '0',
+										sound: null
+										}
+									);
 								}
 							}
 							else if ($c2V < $c2L) {

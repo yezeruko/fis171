@@ -159,6 +159,22 @@ module.exports = [
         "merges": [
             "navigator.notification"
         ]
+    },
+    {
+        "file": "plugins/phonegap-plugin-push/www/push.js",
+        "id": "phonegap-plugin-push.PushNotification",
+        "pluginId": "phonegap-plugin-push",
+        "clobbers": [
+            "PushNotification"
+        ]
+    },
+    {
+        "file": "plugins/phonegap-plugin-push/www/browser/push.js",
+        "id": "phonegap-plugin-push.BrowserPush",
+        "pluginId": "phonegap-plugin-push",
+        "clobbers": [
+            "PushNotification"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -178,7 +194,8 @@ module.exports.metadata =
     "cordova-plugin-boot-launcher": "0.2.0",
     "cordova-plugin-background-fetch": "5.3.0",
     "cordova-plugin-background-service": "1.3.5",
-    "cordova-plugin-dialogs": "2.0.1"
+    "cordova-plugin-dialogs": "2.0.1",
+    "phonegap-plugin-push": "2.2.2"
 }
 // BOTTOM OF METADATA
 });
