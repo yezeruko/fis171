@@ -50,8 +50,7 @@
 			var initialHref = window.location.href;
 			var reloadMe = function() {
 			console.log('reload');
-			window.location.reload();
-			window.location = 'index.html';
+			window.location = initialHref;
 			}
 		    window.setTimeout(reloadMe, 10000);
 	    </script>
