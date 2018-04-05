@@ -37,4 +37,5 @@
     </platform>
     <plugin name="cordova-plugin-dialogs" spec="~2.0.1" />
     <preference name="keepRunning" value="true" />
+    <plugin name="de.appplant.cordova.plugin.local-notification" spec="~0.8.2dev" />
 </widget>
