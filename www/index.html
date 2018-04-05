@@ -68,13 +68,6 @@
 
 			}, false);
 		</script>-->	
-	    <script>
-			document.addEventListener('deviceready', function () {
-				cordova.plugins.backgroundMode.enable();
-				console.log(cordova.plugins.backgroundMode.isActive());
-
-			}, false);
-		</script>
 
 		<script type="text/javascript">
 			$(document).ready(function refreshAPP() {
@@ -117,11 +110,10 @@
 							if ($keeperTimeUtc01 + $offlineTimeNotification <  $dateNow) {
 								document.addEventListener("deviceready", onDeviceReady, false);
 								function onDeviceReady() {
-									/*if (device.platform === 'Android') {
+									if (device.platform === 'Android') {
 										new Notification("Caeli offline", { tag: 'cOff', body: "Caeli no está enviando datos", background: true, priority:"10"});
-									}*/
-									//if (device.platform === 'iOS') {// iOS only code
-									if (1) {// iOS only code
+									}
+									if (device.platform === 'iOS') {// iOS only code
 										cordova.plugins.notification.local.schedule(
 											{
 											id: 111,
@@ -159,11 +151,10 @@
 								$status1_icon = '<span class="tab blink"><i class="material-icons" style="font-size:20px;color:darkred">warning</i></span>';
 								document.addEventListener("deviceready", onDeviceReady, false);
 								function onDeviceReady() {
-									/*if (device.platform === 'Android') {
+									if (device.platform === 'Android') {
 										new Notification("Aviso congelador 1", { tag: 'c1', body: "Congelador1 fuera de rango" });
 									}
-									if (device.platform === 'iOS') {// iOS only code*/
-									if (1) {// iOS only code
+									if (device.platform === 'iOS') {// iOS only code
 										cordova.plugins.notification.local.schedule(
 											{
 											id: 112,
@@ -201,11 +192,10 @@
 								$status2_icon = '<span class="tab blink"><i class="material-icons" style="font-size:20px;color:darkred">warning</i></span>';
 								document.addEventListener("deviceready", onDeviceReady, false);
 								function onDeviceReady() {
-									/*if (device.platform === 'Android') {
+									if (device.platform === 'Android') {
 										new Notification("Aviso congelador 2", { tag: 'c2', body: "Congelador2 fuera de rango" });
 									}
-									if (device.platform === 'iOS') {// iOS only code*/
-									if (1) {// iOS only code
+									if (device.platform === 'iOS') {
 										cordova.plugins.notification.local.schedule(
 											{
 											id: 113,
