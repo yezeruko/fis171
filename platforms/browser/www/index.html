@@ -69,41 +69,6 @@
 			}, false);
 		</script>-->
 		
-		
-<script>
-	document.addEventListener('deviceready', function () {
-	var now = new Date().getTime();
-	var _10SecondsFromNow = new Date(now + 10 * 1000);
-
-		   var fakeNotification = {
-				id: 1,
-				firstAt: _10SecondsFromNow,
-				every: "minute",//Using minute as a test, but it will be day
-				checkStatement: getDataToVerifyStatement()
-			}
-
-			if (fakeNotification.checkStatement === true) {
-				var realNotification = {
-					id: 2,
-					title: "Prima notifica",
-					message: 'hello world',//your function date function here
-					date: _10SecondsFromNow,
-					autoCancel: false,
-					data: "{test"}
-				}
-
-			//not sure, but you might want to put: $cordova.plugins.notification.local.add(realNotification);
-			cordova.plugins.notification.local.add(realNotification);
-	}, false);
-	function getDataToVerifyStatement() {
-		   //logic for  check the days
-		return true;
-	}
-
-</script>
-		
-		
-		
 		<script type="text/javascript">
 			$(document).ready(function refreshAPP() {
 				$.ajax({
