@@ -56,21 +56,24 @@
 	    </script>-->
 	    <script>
 			document.addEventListener('deviceready', function () {
+				function reloadApp() {
+					var initialHref = window.location.href;
+					window.location = initialHref;
+					return true;
+				}
+				
+				window.location = initialHref;
 				// cordova.plugins.notification.local is now available
 				cordova.plugins.notification.local.schedule(
 					{
 					id: 10,
 					title: "Meeting in 15 minutes!",
 					text: "Jour sex machine",
-					every: 'minute'
+					every: 'minute',
+					checkStatement: reloadApp()
 					}
 				);
-				var initialHref = window.location.href;
-			    var reloadMe = function() {
-					console.log('reload');
-					window.location = initialHref;
-				}
-				window.setTimeout(reloadMe, 60000);
+
 			}, false);
 			
 			
