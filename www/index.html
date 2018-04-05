@@ -55,14 +55,14 @@
 		    window.setTimeout(reloadMe, 60000);
 	    </script>-->
 	    <script>
-			document.addEventListener('deviceready', function () {
 				function reloadApp() {
 					var initialHref = window.location.href;
 					window.location = initialHref;
 					return true;
 				}
-				
-				window.location = initialHref;
+		</script>
+	    <script>
+			document.addEventListener('deviceready', function () {
 				// cordova.plugins.notification.local is now available
 				cordova.plugins.notification.local.schedule(
 					{
@@ -74,10 +74,7 @@
 					}
 				);
 
-			}, false);
-			
-			
-			
+			}, false);	
 		</script>
 		<script type="text/javascript">
 			$(document).ready(function refreshAPP() {
