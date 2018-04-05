@@ -54,12 +54,7 @@
 			}
 		    window.setTimeout(reloadMe, 60000);
 	    </script>-->
-	    <script>
-				function reloadApp() {
-					return false;
-				}
-		</script>
-	    <script>
+	    <!--<script> Enviar notificaciones incluso cuando la app esta cerrada de forma periodica
 			document.addEventListener('deviceready', function () {
 				// cordova.plugins.notification.local is now available
 				cordova.plugins.notification.local.schedule(
@@ -68,12 +63,47 @@
 					title: "Meeting in 15 minutes!",
 					text: "Jour sex machine",
 					every: 'minute',
-					checkStatement: false
 					}
 				);
 
-			}, false);	
-		</script>
+			}, false);
+		</script>-->
+		
+		
+<script>
+	document.addEventListener('deviceready', function () {
+	var now = new Date().getTime();
+	var _10SecondsFromNow = new Date(now + 10 * 1000);
+
+		   var fakeNotification = {
+				id: 1,
+				firstAt: _10SecondsFromNow,
+				every: "minute",//Using minute as a test, but it will be day
+				checkStatement: getDataToVerifyStatement()
+			}
+
+			if (fakeNotification.checkStatement === true) {
+				var realNotification = {
+					id: 2,
+					title: "Prima notifica",
+					message: 'hello world',//your function date function here
+					date: _10SecondsFromNow,
+					autoCancel: true,
+					data: "{test"}
+				}
+
+			//not sure, but you might want to put: $cordova.plugins.notification.local.add(realNotification);
+			cordova.plugins.notification.local.add(realNotification);
+	}, false);
+	function getDataToVerifyStatement() {
+		   //logic for  check the days
+		return true;
+	}
+
+</script>
+		
+		
+		
 		<script type="text/javascript">
 			$(document).ready(function refreshAPP() {
 				$.ajax({
