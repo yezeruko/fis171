@@ -232,34 +232,6 @@
 		</script>
    	    <script>var __adobewebfontsappname__="dreamweaver"</script>
         <script src="http://use.edgefonts.net/asap:n4,n7:default.js" type="text/javascript"></script>    
-        		<script>
-			function getDataToVerifyStatement() {
-				//logic for  check the days
-				refreshAPP();
-				if ($c1V >= $c1L) {
-					return true;
-				}
-				else {
-					return false;
-				}
-			}
-		</script>
-		<script>
-			document.addEventListener('deviceready', function () {
-		
-				var now = new Date().getTime();
-				var _10SecondsFromNow = new Date(now + 10 * 1000);
-				
-				cordova.plugins.notification.local.schedule(
-				{
-						id: 1,
-						firstAt: _10SecondsFromNow,
-					    title: "hola bestia",
-						every: "minute",//Using minute as a test, but it will be day
-						checkStatement: getDataToVerifyStatement()
-				});	
-			}, false);
-		</script>
                 
     </head>
     
