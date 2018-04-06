@@ -117,7 +117,7 @@
 								document.addEventListener("deviceready", onDeviceReady, false);
 								function onDeviceReady() {
 									if (device.platform === 'Android') {
-										new Notification("Caeli offline", { tag: 'cOff', body: "Caeli no está enviando datos", background: true, priority:"10"});
+										new Notification("Caeli off-line", { tag: 'cOff', body: "Caeli no está enviando datos"});
 									}
 									if (device.platform === 'iOS') {// iOS only code
 										
