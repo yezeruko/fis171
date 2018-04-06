@@ -68,6 +68,12 @@
 
 			}, false);
 		</script>-->	
+		<script> //ahora
+			document.addEventListener('deviceready', function () {
+				// cordova.plugins.backgroundMode is now available
+				cordova.plugins.backgroundMode.enable();
+			}, false);
+		</script>
 
 		<script type="text/javascript">
 			$(document).ready(function refreshAPP() {
