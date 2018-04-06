@@ -96,10 +96,6 @@
 						 $keeperTimeUtc01 = (Date.parse($datetime)/1000);
 						 $dateNow = (Date.now()/1000);
 						 $offlineTimeNotification = 1000; //1800; // (sec) 30 min
-						 $sendOfflineMsg = 0;
-						 if ($keeperTimeUtc01 + $offlineTimeNotification <  $dateNow) {
-							 $sendOfflineMsg = 1;
-						 }
 						 $c1_wtext = "";
 						 $c2_wtext = "";
 						 $c3_wtext = "";
@@ -126,7 +122,10 @@
 						else {$conectividadC2_icon = "";}
 						document.getElementById('conectividadC2_icon').innerHTML = $conectividadC2_icon;
 						
-						if ($sendOfflineMsg == 1) {
+						if ($conectividadC1 == 0) {
+							$status1_icon = '?';
+							document.getElementById('value1_icon').innerHTML = '?';
+							document.getElementById('limit1_icon').innerHTML = "";
 							document.addEventListener("deviceready", onDeviceReady, false); 
 							function onDeviceReady() {
 								console.log("paye aqui estamos");
@@ -146,12 +145,6 @@
 								}
 
 							}
-						}
-						
-						if ($conectividadC1 == 0) {
-							$status1_icon = '?';
-							document.getElementById('value1_icon').innerHTML = '?';
-							document.getElementById('limit1_icon').innerHTML = "";
 						}
 						else if ($conectividadC1 == 1) {
 							//status
