@@ -68,12 +68,12 @@
 
 			}, false);
 		</script>-->	
-		<!--<script> //ahora
+		<script> //ahora
 			document.addEventListener('deviceready', function () {
 				// cordova.plugins.backgroundMode is now available
 				cordova.plugins.backgroundMode.enable();
 			}, false);
-		</script>-->
+		</script>
 		<script type="text/javascript">
 			$(document).ready(function refreshAPP() {
 				$.ajax({
@@ -83,12 +83,6 @@
 					cache: false,
 					timeout:3000,
 					success: function(result) {
-						
-					document.addEventListener('deviceready', function () {
-						// cordova.plugins.backgroundMode is now available
-						cordova.plugins.backgroundMode.enable();
-					}, false);
-
 						 var result = $.parseJSON(result);
 						 $androidNotification = result["androidNotification"];
 						 $c1 = result["c1"];
@@ -128,6 +122,25 @@
 								function onDeviceReady() {
 									console.log("entro 2");
 									if (device.platform === 'Android') {
+										new Notification("Aviso congelador x", { tag: 'c0', body: "Congeladorx fuera de rango" });
+									}
+									if (device.platform === 'iOS') {// iOS only code
+										
+										cordova.plugins.notification.local.schedule(
+											{
+											id: 112,
+											title: "Aviso congelador x",
+											text: "Congeladorxfuera de rango",
+											every: '0',
+											sound: null
+											}
+										);
+									}
+								}
+								/*document.addEventListener("deviceready", onDeviceReady, false);
+								function onDeviceReady() {
+									console.log("entro 2");
+									if (device.platform === 'Android') {
 										new Notification("Caeli off-line", { tag: 'cOff', body: "Caeli no está enviando datos"});
 									}
 									if (device.platform === 'iOS') {// iOS only code
@@ -143,7 +156,7 @@
 										);
 									}
 
-								}
+								}*/
 							}
 						}
 						else if ($conectividadC1 == 1) {
