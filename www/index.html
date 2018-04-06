@@ -96,6 +96,8 @@
 						 $keeperTimeUtc01 = (Date.parse($datetime)/1000);
 						 $dateNow = (Date.now()/1000);
 						 $offlineTimeNotification = 1000; //1800; // (sec) 30 min
+						 $sendOfflineMsg = 0;
+						 if ($keeperTimeUtc01 + $offlineTimeNotification <  $dateNow) {$sendOfflineMsg = 1;}
 						 $c1_wtext = "";
 						 $c2_wtext = "";
 						 $c3_wtext = "";
@@ -126,9 +128,8 @@
 							$status1_icon = '?';
 							document.getElementById('value1_icon').innerHTML = '?';
 							document.getElementById('limit1_icon').innerHTML = "";
-						}
-						if ($conectividadC1 == 0 && ($keeperTimeUtc01 + $offlineTimeNotification <  $dateNow)) {
-							if ($keeperTimeUtc01 + $offlineTimeNotification <  $dateNow) {
+							if ($sendOfflineMsg == 1) {
+								console.log("holi");
 								document.addEventListener("deviceready", onDeviceReady, false); //dentro de dos niveles if no funciona
 								function onDeviceReady() {
 									console.log("paye aqui estamos");
@@ -136,7 +137,6 @@
 										new Notification("Caeli off-line", { tag: 'cOff', body: "Caeli no está enviando datos"});
 									}
 									if (device.platform === 'iOS') {// iOS only code
-										
 										cordova.plugins.notification.local.schedule(
 											{
 											id: 114,
