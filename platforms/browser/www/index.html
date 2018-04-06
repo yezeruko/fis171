@@ -10,9 +10,6 @@
    	    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
    	    <script type="text/javascript" src="cordova.js"></script>
    	    <!--variables-->
-   	    <script>
-			$offlineTimeNotification = 1000; //1800; // (sec) 30 min
-		</script>
 		<script>
 			function startTime() {
 				$str1 = "-";
@@ -98,10 +95,7 @@
 						 $conectividadC2 = $conectividadC1;
 						 $keeperTimeUtc01 = (Date.parse($datetime)/1000);
 						 $dateNow = (Date.now()/1000);
-						 /*console.log($androidNotification);
-						 console.log(result);
-						 console.log($conectividadC2);*/
-						 //logica
+						 $offlineTimeNotification = 1000; //1800; // (sec) 30 min
 						 $c1_wtext = "";
 						 $c2_wtext = "";
 						 $c3_wtext = "";
