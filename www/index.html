@@ -132,7 +132,7 @@
 							$status1_icon = '?';
 							document.getElementById('value1_icon').innerHTML = '?';
 							document.getElementById('limit1_icon').innerHTML = "";
-							if ($keeperTimeUtc01 + $offlineTimeNotification <  $dateNow) {
+							//if ($keeperTimeUtc01 + $offlineTimeNotification <  $dateNow) {
 								console.log("llego");
 								document.addEventListener("deviceready", onDeviceReady, false);
 								function onDeviceReady() {
@@ -154,7 +154,7 @@
 									}
 
 								}
-							}
+							//}
 							
 						}
 						else if ($conectividadC1 == 1) {
@@ -205,6 +205,9 @@
 							$c1_wtext = "Caeli no está enviando datos al servidor";	
 							$c2_wtext = "1. Comprobar conexión a internet";
 						    $c3_wtext = "2. Comprobar alimentación";
+							$status2_icon = '?';
+							document.getElementById('value2_icon').innerHTML = '?';
+							document.getElementById('limit2_icon').innerHTML = ""	
 						}
 						else if ($conectividadC2 == 1) {
 							//status
