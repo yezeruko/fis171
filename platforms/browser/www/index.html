@@ -132,7 +132,7 @@
 							$status1_icon = '?';
 							document.getElementById('value1_icon').innerHTML = '?';
 							document.getElementById('limit1_icon').innerHTML = "";
-							//if ($keeperTimeUtc01 + $offlineTimeNotification <  $dateNow) {
+							if ($keeperTimeUtc01 + $offlineTimeNotification <  $dateNow) {
 								console.log("llego");
 								document.addEventListener("deviceready", onDeviceReady, false);
 								function onDeviceReady() {
@@ -154,7 +154,7 @@
 									}
 
 								}
-							//}
+							}
 							
 						}
 						else if ($conectividadC1 == 1) {
