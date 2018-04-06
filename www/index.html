@@ -68,13 +68,12 @@
 
 			}, false);
 		</script>-->	
-		<script> //ahora
+		<!--<script> //ahora
 			document.addEventListener('deviceready', function () {
 				// cordova.plugins.backgroundMode is now available
 				cordova.plugins.backgroundMode.enable();
 			}, false);
-		</script>
-
+		</script>-->
 		<script type="text/javascript">
 			$(document).ready(function refreshAPP() {
 				$.ajax({
@@ -84,6 +83,12 @@
 					cache: false,
 					timeout:3000,
 					success: function(result) {
+						
+					document.addEventListener('deviceready', function () {
+						// cordova.plugins.backgroundMode is now available
+						cordova.plugins.backgroundMode.enable();
+					}, false);
+
 						 var result = $.parseJSON(result);
 						 $androidNotification = result["androidNotification"];
 						 $c1 = result["c1"];
@@ -113,9 +118,15 @@
 							$c1_wtext = "Caeli no está enviando datos al servidor";	
 							$c2_wtext = "1. Comprobar conexión a internet";
 						    $c3_wtext = "2. Comprobar alimentación";
+							console.log($keeperTimeUtc01);
+							console.log($offlineTimeNotification);
+							console.log($dateNow);
+							
 							if ($keeperTimeUtc01 + $offlineTimeNotification <  $dateNow) {
+								console.log("entro 1");
 								document.addEventListener("deviceready", onDeviceReady, false);
 								function onDeviceReady() {
+									console.log("entro 2");
 									if (device.platform === 'Android') {
 										new Notification("Caeli off-line", { tag: 'cOff', body: "Caeli no está enviando datos"});
 									}
@@ -155,9 +166,11 @@
 						if ($conectividadC1 == 1) {
 							//status
 							if ($c1V >= $c1L) {
+								console.log("congelador 1 mal");
 								$status1_icon = '<span class="tab blink"><i class="material-icons" style="font-size:20px;color:darkred">warning</i></span>';
 								document.addEventListener("deviceready", onDeviceReady, false);
 								function onDeviceReady() {
+									console.log("entro 2");
 									if (device.platform === 'Android') {
 										new Notification("Aviso congelador 1", { tag: 'c1', body: "Congelador1 fuera de rango" });
 									}
@@ -197,6 +210,7 @@
 						if ($conectividadC2 == 1) {
 							//status
 							if ($c2V >= $c2L) {
+								console.log("congelador 2 mal");
 								$status2_icon = '<span class="tab blink"><i class="material-icons" style="font-size:20px;color:darkred">warning</i></span>';
 								document.addEventListener("deviceready", onDeviceReady, false);
 								function onDeviceReady() {
