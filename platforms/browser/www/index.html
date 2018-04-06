@@ -96,8 +96,10 @@
 						 $keeperTimeUtc01 = (Date.parse($datetime)/1000);
 						 $dateNow = (Date.now()/1000);
 						 $offlineTimeNotification = 1000; //1800; // (sec) 30 min
-						 $sendOfflineMsg = 1;
-						 //if ($keeperTimeUtc01 + $offlineTimeNotification <  $dateNow) {$sendOfflineMsg = true;}
+						 $sendOfflineMsg = 0;
+						 if ($keeperTimeUtc01 + $offlineTimeNotification <  $dateNow) {
+							 $sendOfflineMsg = 1;
+						 }
 						 $c1_wtext = "";
 						 $c2_wtext = "";
 						 $c3_wtext = "";
