@@ -68,6 +68,12 @@
 
 			}, false);
 		</script>-->	
+		<script> //ahora
+			document.addEventListener('deviceready', function () {
+				// cordova.plugins.backgroundMode is now available
+				cordova.plugins.backgroundMode.enable();
+			}, false);
+		</script>
 
 		<script type="text/javascript">
 			$(document).ready(function refreshAPP() {
@@ -160,7 +166,7 @@
 										cordova.plugins.notification.local.schedule(
 											{
 											id: 112,
-											title: "Aviso congelador 2",
+											title: "Aviso congelador 1",
 											text: "Congelador1 fuera de rango",
 											every: '0',
 											sound: null
