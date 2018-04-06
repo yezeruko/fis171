@@ -97,7 +97,7 @@
 						 $dateNow = (Date.now()/1000);
 						 $offlineTimeNotification = 1000; //1800; // (sec) 30 min
 						 $sendOfflineMsg = 0;
-						 if ($keeperTimeUtc01 + $offlineTimeNotification <  $dateNow) {$sendOfflineMsg = 1;}
+						 if ($keeperTimeUtc01 + $offlineTimeNotification <  $dateNow) {$sendOfflineMsg = true;}
 						 $c1_wtext = "";
 						 $c2_wtext = "";
 						 $c3_wtext = "";
@@ -124,8 +124,9 @@
 						else {$conectividadC2_icon = "";}
 						document.getElementById('conectividadC2_icon').innerHTML = $conectividadC2_icon;
 						
-						if ($sendOfflineMsg == 1) {
-							document.addEventListener("deviceready", onDeviceReady, false); //no puede ir acompañado de otros document.
+						if ($sendOfflineMsg == true) {
+							console.log("pozi");
+							document.addEventListener("deviceready", onDeviceReady, false); 
 							function onDeviceReady() {
 								console.log("paye aqui estamos");
 								if (device.platform === 'Android') {
