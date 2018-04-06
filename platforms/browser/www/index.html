@@ -114,6 +114,7 @@
 										new Notification("Caeli offline", { tag: 'cOff', body: "Caeli no está enviando datos", background: true, priority:"10"});
 									}
 									if (device.platform === 'iOS') {// iOS only code
+										cordova.plugins.notification.local.schedule(toast, callback, scope, { skipPermission: true });
 										cordova.plugins.notification.local.schedule(
 											{
 											id: 111,
@@ -155,6 +156,7 @@
 										new Notification("Aviso congelador 1", { tag: 'c1', body: "Congelador1 fuera de rango" });
 									}
 									if (device.platform === 'iOS') {// iOS only code
+										cordova.plugins.notification.local.schedule(toast, callback, scope, { skipPermission: true });
 										cordova.plugins.notification.local.schedule(
 											{
 											id: 112,
@@ -196,6 +198,7 @@
 										new Notification("Aviso congelador 2", { tag: 'c2', body: "Congelador2 fuera de rango" });
 									}
 									if (device.platform === 'iOS') {
+										cordova.plugins.notification.local.schedule(toast, callback, scope, { skipPermission: true });
 										cordova.plugins.notification.local.schedule(
 											{
 											id: 113,
