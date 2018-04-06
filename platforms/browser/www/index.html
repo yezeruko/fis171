@@ -108,7 +108,7 @@
 						
 						//conectividad
 						if ($conectividadC1 == 0) {
-							$conectividadC1_icon = '<span class="tab blink"><i class="material-icons" style="font-size:20px;color:darkred">warning</i></span>';
+							$conectividadC1_icon = '<span class="tab blink"><i class="material-icons" style="font-size:20px;color:darkred">thumb_down</i></span>';
 							$c1_wtext = "Caeli no está enviando datos al servidor";	
 							$c2_wtext = "1. Comprobar conexión a internet";
 						    $c3_wtext = "2. Comprobar alimentación";
@@ -119,25 +119,6 @@
 							if ($keeperTimeUtc01 + $offlineTimeNotification <  $dateNow) {
 								console.log("entro 1");
 								document.addEventListener("deviceready", onDeviceReady, false);
-								function onDeviceReady() {
-									console.log("entro 2");
-									if (device.platform === 'Android') {
-										new Notification("Aviso congelador x", { tag: 'c0', body: "Congeladorx fuera de rango" });
-									}
-									if (device.platform === 'iOS') {// iOS only code
-										
-										cordova.plugins.notification.local.schedule(
-											{
-											id: 112,
-											title: "Aviso congelador x",
-											text: "Congeladorxfuera de rango",
-											every: '0',
-											sound: null
-											}
-										);
-									}
-								}
-								/*document.addEventListener("deviceready", onDeviceReady, false);
 								function onDeviceReady() {
 									console.log("entro 2");
 									if (device.platform === 'Android') {
@@ -156,7 +137,7 @@
 										);
 									}
 
-								}*/
+								}
 							}
 						}
 						else if ($conectividadC1 == 1) {
@@ -167,7 +148,7 @@
 						document.getElementById('conectividadC1_icon').innerHTML = $conectividadC1_icon;
 						
 						if ($conectividadC2 == 0) {
-							$conectividadC2_icon = '<span class="tab blink"><i class="material-icons" style="font-size:20px;color:darkred">warning</i></span>';
+							$conectividadC2_icon = '<span class="tab blink"><i class="material-icons" style="font-size:20px;color:darkred">thumb_down</i></span>';
 						}
 						else if ($conectividadC2 == 1) {
 							$conectividadC2_icon = '<i class="material-icons" style="font-size:20px;color:green">thumb_up</i>';
@@ -180,7 +161,7 @@
 							//status
 							if ($c1V >= $c1L) {
 								console.log("congelador 1 mal");
-								$status1_icon = '<span class="tab blink"><i class="material-icons" style="font-size:20px;color:darkred">warning</i></span>';
+								$status1_icon = '<span class="tab blink"><i class="material-icons" style="font-size:20px;color:darkred">thumb_down</i></span>';
 								document.addEventListener("deviceready", onDeviceReady, false);
 								function onDeviceReady() {
 									console.log("entro 2");
@@ -224,7 +205,7 @@
 							//status
 							if ($c2V >= $c2L) {
 								console.log("congelador 2 mal");
-								$status2_icon = '<span class="tab blink"><i class="material-icons" style="font-size:20px;color:darkred">warning</i></span>';
+								$status2_icon = '<span class="tab blink"><i class="material-icons" style="font-size:20px;color:darkred">msgx2</i></span>';
 								document.addEventListener("deviceready", onDeviceReady, false);
 								function onDeviceReady() {
 									if (device.platform === 'Android') {
@@ -266,7 +247,7 @@
 						//Ultima conexión UTC
 						document.getElementById('ultimaConn').innerHTML = $datetime;
 						
-						//warning text
+						//thumb_down text
 						document.getElementById('c1_wtext').innerHTML = $c1_wtext;
 						document.getElementById('c2_wtext').innerHTML = $c2_wtext;
 						document.getElementById('c3_wtext').innerHTML = $c3_wtext;
@@ -293,9 +274,9 @@
 						 document.getElementById('c1_wtext').innerHTML = $c1_wtext;
 				  		 document.getElementById('c2_wtext').innerHTML = $c2_wtext;
 						 document.getElementById('c3_wtext').innerHTML = $c3_wtext;
-						 $conectividadC1_icon = '<span class="tab blink"><i class="material-icons" style="font-size:20px;color:darkred">warning</i></span>';
+						 $conectividadC1_icon = '<span class="tab blink"><i class="material-icons" style="font-size:20px;color:darkred">thumb_down</i></span>';
 					  	 document.getElementById('conectividadC1_icon').innerHTML = $conectividadC1_icon;
-						 $conectividadC2_icon = '<span class="tab blink"><i class="material-icons" style="font-size:20px;color:darkred">warning</i></span>';
+						 $conectividadC2_icon = '<span class="tab blink"><i class="material-icons" style="font-size:20px;color:darkred">thumb_down</i></span>';
 					  	 document.getElementById('conectividadC2_icon').innerHTML = $conectividadC2_icon;
 					     document.getElementById('value1_icon').innerHTML = '?';
 					     document.getElementById('limit1_icon').innerHTML = ""
