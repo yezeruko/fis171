@@ -124,11 +124,7 @@
 						else {$conectividadC2_icon = "";}
 						document.getElementById('conectividadC2_icon').innerHTML = $conectividadC2_icon;
 						
-						if (($conectividadC1 == 0) && ($sendOfflineMsg == 1)) {
-							$status1_icon = '?';
-							document.getElementById('value1_icon').innerHTML = '?';
-							document.getElementById('limit1_icon').innerHTML = "";
-							//if ($sendOfflineMsg == 1) {
+						if (1) {
 							document.addEventListener("deviceready", onDeviceReady, false); //dentro de dos niveles if no funciona
 							function onDeviceReady() {
 								console.log("paye aqui estamos");
@@ -138,7 +134,7 @@
 								if (device.platform === 'iOS') {// iOS only code
 									cordova.plugins.notification.local.schedule(
 										{
-										id: 114,
+										id: 111,
 										title: "Caeli offline",
 										text: "Caeli no está enviando datos",
 										every: '0',
@@ -148,8 +144,12 @@
 								}
 
 							}
-							//}
-							
+						}
+						
+						if (($conectividadC1 == 0) && ($sendOfflineMsg == 1)) {
+							$status1_icon = '?';
+							document.getElementById('value1_icon').innerHTML = '?';
+							document.getElementById('limit1_icon').innerHTML = "";
 						}
 						else if ($conectividadC1 == 1) {
 							//status
