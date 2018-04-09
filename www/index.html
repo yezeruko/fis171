@@ -65,6 +65,14 @@
 
 			}, false);
 		</script>-->	
+		<!--Globales para ajax. Si no, no podriamos hacer calculos con ellas-->
+		<script>
+			$offlineTimeNotification = 1800; // (sec) 1800=30 min
+			$dateNow = 0;
+			$keeperTimeUtc01 = 0;
+			$sendOfflineMessg = 0;
+			
+		</script>
 		<script> //ahora
 			document.addEventListener('deviceready', function () {
 				// cordova.plugins.backgroundMode is now available
@@ -80,25 +88,25 @@
 					cache: false,
 					timeout:3000,
 					success: function(result) {
-						 var result = $.parseJSON(result);
-						 $androidNotification = result["androidNotification"];
-						 $c1 = result["c1"];
-						 $c1L = result["c1L"];
-						 $c1V = result["c1V"];
-						 $c2 = result["c2"];
-						 $c2L = result["c2L"];
-						 $c2V = result["c2V"];
-						 $datetime = result["datetime"];
-						 $maxConn = result["maxConn"];
-						 $nowDatetime = result["nowDatetime"];
-						 $conectividadC1 = result["status"];
-						 $conectividadC2 = $conectividadC1;
-						 $keeperTimeUtc01 = (Date.parse($datetime)/1000);
-						 $dateNow = (Date.now()/1000);
-						 $offlineTimeNotification = 1000; //1800; // (sec) 30 min
-						 $c1_wtext = "";
-						 $c2_wtext = "";
-						 $c3_wtext = "";
+						var result = $.parseJSON(result);
+						$androidNotification = result["androidNotification"];
+						$c1 = result["c1"];
+						$c1L = result["c1L"];
+						$c1V = result["c1V"];
+						$c2 = result["c2"];
+						$c2L = result["c2L"];
+						$c2V = result["c2V"];
+						$datetime = result["datetime"];
+						$maxConn = result["maxConn"];
+						$nowDatetime = result["nowDatetime"];
+						$conectividadC1 = result["status"];
+						$conectividadC2 = $conectividadC1;
+						$keeperTimeUtc01 = (Date.parse($datetime)/1000);
+						$dateNow = (Date.now()/1000);
+						if ($keeperTimeUtc01 + $offlineTimeNotification <  $dateNow) {$sendOfflineMessg = 1;}
+						$c1_wtext = "";
+						$c2_wtext = "";
+						$c3_wtext = "";
 						
 						//conectividad
 						if ($conectividadC1 == 0) {
@@ -126,24 +134,25 @@
 							$status1_icon = '?';
 							document.getElementById('value1_icon').innerHTML = '?';
 							document.getElementById('limit1_icon').innerHTML = "";
-							document.addEventListener("deviceready", onDeviceReady, false); 
-							function onDeviceReady() {
-								console.log("paye aqui estamos");
-								if (device.platform === 'Android') {
-									new Notification("Caeli off-line", { tag: 'cOff', body: "Caeli no está enviando datos"});
-								}
-								if (device.platform === 'iOS') {// iOS only code
-									cordova.plugins.notification.local.schedule(
-										{
-										id: 111,
-										title: "Caeli offline",
-										text: "Caeli no está enviando datos",
-										every: '0',
-										sound: null
-										}
-									);
-								}
+							if ($sendOfflineMessg == 1){
+								document.addEventListener("deviceready", onDeviceReady, false); 
+								function onDeviceReady() {
+									if (device.platform === 'Android') {
+										new Notification("Caeli off-line", { tag: 'cOff', body: "Caeli no está enviando datos"});
+									}
+									if (device.platform === 'iOS') {// iOS only code
+										cordova.plugins.notification.local.schedule(
+											{
+											id: 111,
+											title: "Caeli offline",
+											text: "Caeli no está enviando datos",
+											every: '0',
+											sound: null
+											}
+										);
+									}
 
+								}
 							}
 						}
 						else if ($conectividadC1 == 1) {
