@@ -94,13 +94,16 @@
 						$nowDatetime = result["nowDatetime"];
 						$conectividadC1 = result["status"];
 						$conectividadC2 = $conectividadC1;
-						$keeperTimeUtc01 = (Date.parse($datetime)/1000);
-						$dateNow = (Date.now()/1000);
-						$offlineTimeNotification = 1800; // (sec) 1800=30 min
-						$conditionOffline = parseInt($keeperTimeUtc01) + parseInt($offlineTimeNotification);
+						$keeperTimeUtc01 = parseInt(Date.parse($datetime)/(1000*60));
+						$dateNow = parseInt(Date.now()/(1000*60)); //min
+						$offlineTimeNotification = 30; // (min) 30 min
+						$conditionOffline = $keeperTimeUtc01 + $offlineTimeNotification;
 						//if (parseInt($keeperTimeUtc01) + parseInt($offlineTimeNotification) <  parseInt($dateNow)) {$sendOfflineMessg = 1;}
-						if ($conditionOffline < parseInt($dateNow)) {$sendOfflineMessg = 1;}
+						if ($conditionOffline < $dateNow) {$sendOfflineMessg = 1;}
 						else {$sendOfflineMessg = 0;}
+						console.log($dateNow);
+						console.log($offlineTimeNotification);
+						console.log($keeperTimeUtc01);
 						$c1_wtext = "";
 						$c2_wtext = "";
 						$c3_wtext = "";
