@@ -66,13 +66,6 @@
 			}, false);
 		</script>-->	
 		<!--Globales para ajax. Si no, no podriamos hacer calculos con ellas-->
-		<script>
-			$offlineTimeNotification = 1800; // (sec) 1800=30 min
-			$dateNow = 0;
-			$keeperTimeUtc01 = 0;
-			$sendOfflineMessg = 0;
-			
-		</script>
 		<script> //ahora
 			document.addEventListener('deviceready', function () {
 				// cordova.plugins.backgroundMode is now available
@@ -80,6 +73,10 @@
 			}, false);
 		</script>
 		<script type="text/javascript">
+			$offlineTimeNotification = 1800; // (sec) 1800=30 min
+			$dateNow = 0;
+			$keeperTimeUtc01 = 0;
+			$sendOfflineMessg = 0;
 			$(document).ready(function refreshAPP() {
 				$.ajax({
 					type: "GET",
