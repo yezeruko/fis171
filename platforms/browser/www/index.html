@@ -73,10 +73,6 @@
 			}, false);
 		</script>
 		<script type="text/javascript">
-			$offlineTimeNotification = 1800; // (sec) 1800=30 min
-			$dateNow = 0;
-			$keeperTimeUtc01 = 0;
-			$sendOfflineMessg = 0;
 			$(document).ready(function refreshAPP() {
 				$.ajax({
 					type: "GET",
@@ -100,11 +96,13 @@
 						$conectividadC2 = $conectividadC1;
 						$keeperTimeUtc01 = (Date.parse($datetime)/1000);
 						$dateNow = (Date.now()/1000);
+						$offlineTimeNotification = 1800; // (sec) 1800=30 min
 						if ($keeperTimeUtc01 + $offlineTimeNotification <  $dateNow) {$sendOfflineMessg = 1;}
+						else {$sendOfflineMessg = 0;}
 						$c1_wtext = "";
 						$c2_wtext = "";
 						$c3_wtext = "";
-						
+						console.log($sendOfflineMessg);
 						//conectividad
 						if ($conectividadC1 == 0) {
 							$conectividadC1_icon = '<span class="tab blink"><i class="material-icons" style="font-size:20px;color:darkred">thumb_down</i></span>';
