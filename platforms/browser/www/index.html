@@ -89,28 +89,28 @@
 						$c2 = result["c2"];
 						$c2L = result["c2L"];
 						$c2V = result["c2V"];
-						$datetime = result["datetime"];
+						var datetime = result["datetime"];
 						$maxConn = result["maxConn"];
 						$nowDatetime = result["nowDatetime"];
 						$conectividadC1 = result["status"];
 						$conectividadC2 = $conectividadC1;
-						$keeperTimeUtc01 = Date.parse($datetime)/(1000*60);
-						$dateNow = parseInt(Date.now()/(1000*60)); //min
-						$offlineTimeNotification = 30.0; // (min) 30 min
-						$conditionOffline = Number(Date.parse($datetime))/(60*1000) + Number($offlineTimeNotification);
+						var keeperTimeUtc01 = Date.parse(datetime)/(1000*60);
+						var dateNow = Date.now()/(1000*60); //min
+						var offlineTimeNotification = 30.0; // (min) 30 min
+						var conditionOffline = Number(Date.parse(datetime))/(60*1000) + Number(offlineTimeNotification);
+						var sendOfflineMessg = 0;
 						//if (parseInt($keeperTimeUtc01) + parseInt($offlineTimeNotification) <  parseInt($dateNow)) {$sendOfflineMessg = 1;}
-						if ($conditionOffline < 25387645.46246667) {$sendOfflineMessg = 1;}
-						else {$sendOfflineMessg = 0;}
-						console.log($dateNow);
+						if (conditionOffline < dateNow) {sendOfflineMessg = 1;}
+						console.log(dateNow);
 						console.log(Number(Date.now())/(60*1000));
-						console.log($offlineTimeNotification);
-						console.log(Number($offlineTimeNotification));
-						console.log($keeperTimeUtc01);
-						console.log(Number(Date.parse($datetime))/(60*1000));
+						console.log(offlineTimeNotification);
+						console.log(Number(offlineTimeNotification));
+						console.log(keeperTimeUtc01);
+						console.log(Number(Date.parse(datetime))/(60*1000));
 						$c1_wtext = "";
 						$c2_wtext = "";
 						$c3_wtext = "";
-						console.log($sendOfflineMessg);
+						console.log(sendOfflineMessg);
 						//conectividad
 						if ($conectividadC1 == 0) {
 							$conectividadC1_icon = '<span class="tab blink"><i class="material-icons" style="font-size:20px;color:darkred">thumb_down</i></span>';
@@ -137,7 +137,7 @@
 							$status1_icon = '?';
 							document.getElementById('value1_icon').innerHTML = '?';
 							document.getElementById('limit1_icon').innerHTML = "";
-							if ($sendOfflineMessg == 1){
+							if (sendOfflineMessg == 1){
 								document.addEventListener("deviceready", onDeviceReady, false); 
 								function onDeviceReady() {
 									if (device.platform === 'Android') {
@@ -253,7 +253,7 @@
 						
 						
 						//Ultima conexión UTC
-						document.getElementById('ultimaConn').innerHTML = $datetime;
+						document.getElementById('ultimaConn').innerHTML = datetime;
 						
 						//thumb_down text
 						document.getElementById('c1_wtext').innerHTML = $c1_wtext;
